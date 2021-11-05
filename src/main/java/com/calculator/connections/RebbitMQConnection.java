@@ -36,39 +36,33 @@ public class RebbitMQConnection {
 	@PostConstruct
 	private void addToQueue() {
 
-		//Queue filaEstoque =this.fila(RabbitMQConstants.FILA_ESTOQUE);
-		//Queue filaPreco =this.fila(RabbitMQConstants.FILA_PRECO);
-		Queue soma= this.queue(RabbitMQConstants.FILA_SOMA);
-		Queue multuplicacao= this.queue(RabbitMQConstants.FILA_MULTIPLICACAO);
-		Queue subtracao= this.queue(RabbitMQConstants.FILA_SUBTRACAO);
-		Queue divisao= this.queue(RabbitMQConstants.FILA_DIVISAO);
+		Queue sum= this.queue(RabbitMQConstants.FILA_SUM);
+		Queue mult= this.queue(RabbitMQConstants.FILA_MULT);
+		Queue subt= this.queue(RabbitMQConstants.FILA_SUBT);
+		Queue div= this.queue(RabbitMQConstants.FILA_DIV);
 	
-		//DirectExchange troca = this.trocaDirecta();
+		
 		DirectExchange exchange= this.directExchange();
 		
-		//Binding ligacaoPreco= this.relacionamento(filaPreco, troca);
 		
-		Binding connectionSoma=this.relationship(soma, exchange);
-		Binding connectionSubtracao=this.relationship(subtracao, exchange);
-		Binding connectionMultiplicacao=this.relationship(multuplicacao, exchange);
-		Binding connectionDivisao=this.relationship(divisao, exchange);
+		Binding connectionSum=this.relationship(sum, exchange);
+		Binding connectionSubt=this.relationship(mult, exchange);
+		Binding connectionMult=this.relationship(subt, exchange);
+		Binding connectionDiv=this.relationship(div, exchange);
 		
-		//this.amqpadmin.declareQueue(filaEstoque);
-		//this.amqpadmin.declareQueue(filaPreco);
-		this.amqpadmin.declareQueue(soma);
-		this.amqpadmin.declareQueue(subtracao);
-		this.amqpadmin.declareQueue(multuplicacao);
-		this.amqpadmin.declareQueue(divisao);
+		this.amqpadmin.declareQueue(sum);
+		this.amqpadmin.declareQueue(mult);
+		this.amqpadmin.declareQueue(subt);
+		this.amqpadmin.declareQueue(div);
 		
-		//this.amqpadmin.declareExchange(troca);
+		
 		this.amqpadmin.declareExchange(exchange);
 		
-		//this.amqpadmin.declareBinding(ligacaoEstoque);
-		//this.amqpadmin.declareBinding(ligacaoPreco);
-		this.amqpadmin.declareBinding(connectionSoma);
-		this.amqpadmin.declareBinding(connectionSubtracao);
-		this.amqpadmin.declareBinding(connectionMultiplicacao);
-		this.amqpadmin.declareBinding(connectionDivisao);
+		
+		this.amqpadmin.declareBinding(connectionSum);
+		this.amqpadmin.declareBinding(connectionSubt);
+		this.amqpadmin.declareBinding(connectionMult);
+		this.amqpadmin.declareBinding(connectionDiv);
 		
 	}
 
