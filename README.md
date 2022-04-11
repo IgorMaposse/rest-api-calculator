@@ -1,4 +1,3 @@
-# Wit-Java-Challenge
 
 This repository contains the source code of a java application developed by Igor
 The app makes requests: 
